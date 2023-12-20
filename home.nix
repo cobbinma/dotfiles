@@ -43,14 +43,12 @@ in
     pkgs.spotify
     pkgs.spotify-player
 
-    # ide
-    pkgs.rover
-
     # languages
 
     ## rust 🦀
     pkgs.rustup
     pkgs.cargo-watch
+    pkgs.rover
 
     # go
     pkgs.golangci-lint
@@ -79,8 +77,10 @@ in
     pkgs.protobuf
     pkgs.buf
 
-    ## misc
+    ## elixir
     pkgs.elixir
+
+    ## gleam
     pkgs.gleam
 
     # databases
@@ -117,14 +117,13 @@ in
   # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
-    VAULT_ADDR = "https://vault.internal.perkbox.services";
-    CARGO_NET_GIT_FETCH_WITH_CLI = "true";
   };
 
   home.shellAliases = {
     hms = "home-manager switch";
     hmu = "nix-channel --update && home-manager switch";
     master = "git checkout master && git pull";
+    main = "git checkout main && git pull";
   };
 
   programs.git = {
