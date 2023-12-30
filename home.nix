@@ -119,6 +119,15 @@ in
     EDITOR = "nvim";
   };
 
+  home.sessionPath = [
+      "$HOME/.nix-profile/bin"
+      "$HOME/.cargo/bin"
+      "$HOME/.local/bin"
+      "/usr/local/go/bin"
+      "$HOME/go/bin"
+      "/opt/homebrew/bin"
+  ];
+
   home.shellAliases = {
     hms = "home-manager switch";
     hmu = "nix-channel --update && home-manager switch";
@@ -198,11 +207,6 @@ in
     enableAutosuggestions = true;
     enableCompletion = true;
     initExtra = ''
-      export PATH=$PATH:~/.nix-profile/bin
-      export PATH=$PATH:/opt/homebrew/bin
-      export PATH=$PATH:$(go env GOPATH)/bin
-      export PATH=$PATH:~/.cargo/bin
-
       eval $(fnm env)
 
       if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
@@ -299,6 +303,10 @@ in
   programs.thefuck = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.nnn = {
+    enable = true;
   };
 
   # Let Home Manager install and manage itself.
