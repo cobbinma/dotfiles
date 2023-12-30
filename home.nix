@@ -179,6 +179,7 @@ in
       astro-build.astro-vscode
       vscode-icons-team.vscode-icons
       shd101wyy.markdown-preview-enhanced
+      mechatroner.rainbow-csv
     ];
   };
 
@@ -191,13 +192,14 @@ in
     enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = ["git" "thefuck" "docker" "golang" "kubectl"];
+      plugins = ["git" "docker" "golang" "kubectl"];
     };
     syntaxHighlighting.enable = true;
     enableAutosuggestions = true;
     enableCompletion = true;
     initExtra = ''
-      export PATH=/opt/homebrew/bin:$PATH
+      export PATH=$PATH:~/.nix-profile/bin
+      export PATH=$PATH:/opt/homebrew/bin
       export PATH=$PATH:$(go env GOPATH)/bin
       export PATH=$PATH:~/.cargo/bin
 
@@ -222,9 +224,12 @@ in
         size = 14;
         normal.family = "JetBrainsMono Nerd Font";
       };
-      window.padding = {
-        x = 2;
-        y = 2;
+      window = {
+        padding = {
+          x = 2;
+          y = 2;
+        };
+        decorations = "full";
       };
       shell.program = "${pkgs.zsh}/bin/zsh";
       colors = {
@@ -289,6 +294,11 @@ in
   programs.go = {
     enable = true;
     package = pkgs.go_1_21;
+  };
+
+  programs.thefuck = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # Let Home Manager install and manage itself.
